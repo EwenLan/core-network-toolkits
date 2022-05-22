@@ -1,0 +1,28 @@
+@import '~antd/dist/antd.css';
+
+.app-outer-content {
+    padding: 64px 48px;
+    height: 100%;
+}
+
+.site-layout-background {
+    background: white;
+}
+
+.app-inner-layout {
+    padding: 24px 0;
+    height: 100%;
+}
+
+.sider-menu {
+    height: auto;
+}
+
+.content {
+    padding: 0 24px;
+    min-height: 280;
+}
+
+.app-layout {
+    height: 100vh;
+}
