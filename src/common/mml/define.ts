@@ -11,6 +11,12 @@ export enum ParameterValueType {
     String,
 }
 
+export interface TextType {
+    ToString(): string
+    GetKey(): string
+    Sortable(): boolean
+}
+
 export interface ParameterType {
     name: string
     value: string
@@ -29,3 +35,5 @@ export interface CommandType {
     prototype: PrototypeType
     parameters: ParameterType[]
 }
+
+export type ScriptType = TextType[]

@@ -1,8 +1,11 @@
 import { QuickSortObjects } from "../sort/sort"
 import { SplitComma } from "../utilities/utilities"
-import { PrototypeType, ParameterType, CommandType, VerbType } from "./define"
+import { Command, PlainText } from "./command"
+import { PrototypeType, ParameterType, CommandType, VerbType, ScriptType } from "./define"
 
 const colonSplitedSections = 2
+const scriptSplitter = "\n"
+const commentStarter = "/"
 
 function VerbTypeFromString(verbText: string): VerbType {
     switch (verbText) {
@@ -47,4 +50,18 @@ export function CommandFromText(commandText: string): CommandType {
         prototype: PrototypeFromText(prototypeText),
         parameters: ParametersFromText(parametersText),
     }
+}
+
+export function ScriptTypeFromText(scriptText: string): ScriptType {
+    const rows = scriptText.split(scriptSplitter)
+    let newScripts: ScriptType = []
+    rows.forEach((v) => {
+        if (v.startsWith(commentStarter) || v.trim() === "") {
+            newScripts.push(new PlainText(v))
+        } else {
+            newScripts.push(new Command(CommandFromText(v)))
+        }
+
+    })
+    return newScripts
 }

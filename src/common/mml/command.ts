@@ -1,5 +1,5 @@
 import { QuickSortObjects } from "../sort/sort"
-import { CommandType, ParameterInnerType, ParameterType, ParameterValueType, PrototypeType, VerbType } from "./define"
+import { CommandType, ParameterInnerType, ParameterType, ParameterValueType, PrototypeType, TextType, VerbType } from "./define"
 
 
 const emptyPrototype: PrototypeType = {
@@ -104,7 +104,7 @@ export class Parameters {
     }
 }
 
-export class Command {
+export class Command implements TextType {
     prototype: Prototype
     parameters: Parameters
     constructor(command?: CommandType) {
@@ -130,5 +130,24 @@ export class Command {
             },
             parameters: this.parameters.parameters.map((v) => v.ExportParameterType())
         }
+    }
+    Sortable(): boolean {
+        return true
+    }
+}
+
+export class PlainText implements TextType {
+    text: string
+    constructor(s: string) {
+        this.text = s
+    }
+    ToString(): string {
+        return this.text
+    }
+    GetKey(): string {
+        return this.text
+    }
+    Sortable(): boolean {
+        return false
     }
 }
