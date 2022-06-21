@@ -26,8 +26,8 @@ export class Prototype implements PrototypeType {
         this.target = prototype.target
     }
     ToString(): string {
-        if (this.verb === VerbType.Empty) {
-            return this.target
+        if (this.target === "") {
+            return this.verb
         }
         return `${this.verb} ${this.target}`
     }

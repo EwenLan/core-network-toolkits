@@ -4,6 +4,7 @@ export enum VerbType {
     Modify = "MOD",
     Set = "SET",
     Remove = "RMV",
+    Ping = "PING",
 }
 
 export enum ParameterValueType {

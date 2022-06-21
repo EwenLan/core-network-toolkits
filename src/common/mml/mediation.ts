@@ -21,12 +21,24 @@ function VerbTypeFromString(verbText: string): VerbType {
     }
 }
 
+function GetFirstNonEmptyIndex(words: string[], startIndex: number): [number, string] {
+    let i = startIndex
+    for (; i < words.length; i++) {
+        if (words[i] !== "") {
+            return [i, words[i]]
+        }
+    }
+    return [i, ""]
+}
+
 export function PrototypeFromText(prototypeText: string): PrototypeType {
     const trimedPrototypeText = prototypeText.toUpperCase().trim()
-    const [verb, target] = trimedPrototypeText.split(" ")
+    const words = trimedPrototypeText.split(" ")
+    let [firstIndex, firstWord] = GetFirstNonEmptyIndex(words, 0)
+    let [, secondWord] = GetFirstNonEmptyIndex(words, firstIndex + 1)
     return {
-        verb: VerbTypeFromString(verb),
-        target: target,
+        verb: VerbTypeFromString(firstWord),
+        target: secondWord,
     }
 }
 
