@@ -1,15 +1,14 @@
 import { QuickSortObjects } from "../sort/sort"
-import { Command } from "./command"
-import { CommandType } from "./define"
+import { ScriptType } from "./define"
 
 export class Script {
-    commands: Command[]
-    constructor(commands?: CommandType[]) {
+    commands: ScriptType
+    constructor(commands?: ScriptType) {
         if (typeof (commands) == "undefined") {
             this.commands = []
             return
         }
-        this.commands = commands.map((value) => new Command(value))
+        this.commands = commands.map((value) => Object.create(value))
     }
     ToString(): string {
         if (this.commands.length === 0) {
@@ -22,10 +21,11 @@ export class Script {
         return scriptText
     }
     Clone(): Script {
-        const newCommands = this.commands.map((value) => value.ExportCommandType())
+        const newCommands = this.commands.map((value) => Object.create(value))
         return new Script(newCommands)
     }
     Sort() {
-        this.commands = QuickSortObjects(this.commands) as Command[]
+        const sortableCommands = this.commands.filter(v => v.Sortable() === true)
+        this.commands = QuickSortObjects(sortableCommands) as ScriptType
     }
 }

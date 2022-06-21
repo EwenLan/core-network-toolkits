@@ -51,7 +51,7 @@ test("normal command string test case", () => {
         },
     ]
     testCaseList.forEach(element => {
-        const command = new Script(element.commands)
+        const command = new Script(element.commands.map((v) => new Command(v)))
         expect(command.ToString()).toStrictEqual(element.expect)
     })
 })
@@ -126,9 +126,9 @@ test("normal command sort test case", () => {
         },
     ]
     testCaseList.forEach(element => {
-        const script = new Script(element.commands)
+        const script = new Script(element.commands.map((v) => new Command(v)))
         const newScript = script.Clone()
         newScript.Sort()
-        expect(newScript.commands).toStrictEqual(element.expect)
+        expect(newScript.commands.map((v) => v.ToString())).toStrictEqual(element.expect.map((v) => v.ToString()))
     })
 })
