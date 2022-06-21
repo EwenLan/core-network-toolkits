@@ -27,13 +27,13 @@ function MMLMirrorApp() {
         <>
             <KeyValuePair title="Configuration Section" value={
                 <TextArea allowClear={true}
-                    onChange={handleInputConfigurationSection}
+                    onChange={handleInputConfigurationSection} rows={6}
                 />}
                 direction={KeyValuePairDirection.vertical}
             />
             <KeyValuePair title="Operation" value={<Button children="Convert" type="primary" onClick={handleClick} />} />
             <KeyValuePair title="Formatted Script" value={
-                <TextArea allowClear={true} value={formattedScript} contentEditable={true} />}
+                <TextArea allowClear={true} value={formattedScript} rows={6} />}
                 direction={KeyValuePairDirection.vertical}
             />
         </>
