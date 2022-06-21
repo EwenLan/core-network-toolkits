@@ -3,7 +3,7 @@ import { CommandType, ParameterInnerType, ParameterType, ParameterValueType, Pro
 
 
 const emptyPrototype: PrototypeType = {
-    verb: VerbType.Empty,
+    verb: "",
     target: "",
 }
 
@@ -26,7 +26,7 @@ export class Prototype implements PrototypeType {
         this.target = prototype.target
     }
     ToString(): string {
-        if (this.verb === VerbType.Empty) {
+        if (this.verb === "") {
             return this.target
         }
         return `${this.verb} ${this.target}`

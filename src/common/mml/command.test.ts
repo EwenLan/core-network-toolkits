@@ -1,6 +1,5 @@
 import { Command, Parameter, Parameters } from "./command"
-import { PrototypeType, VerbType, ParameterType, CommandType } from "./define"
-import { PrototypeFromText, ParameterFromText, ParametersFromText, CommandFromText } from "./mediation"
+import { ParameterType, CommandType } from "./define"
 
 // Class Parameter
 interface ParameterTestType {
@@ -92,7 +91,7 @@ test("normal command string test case", () => {
             name: "normal upper case",
             command: {
                 prototype: {
-                    verb: VerbType.Add,
+                    verb: "ADD",
                     target: "MMEID",
                 },
                 parameters: [

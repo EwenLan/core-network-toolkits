@@ -1,5 +1,5 @@
 import { Command } from "./command"
-import { CommandType, VerbType } from "./define"
+import { CommandType } from "./define"
 import { Script } from "./script"
 
 // ScriptToString
@@ -15,19 +15,19 @@ test("normal command string test case", () => {
             commands: [
                 {
                     // SET NE:NENAME="CloudUSN";
-                    prototype: { verb: VerbType.Set, target: "NE" },
+                    prototype: { verb: "SET", target: "NE" },
                     parameters: [{ name: "NENAME", value: `"CloudUSN"` }],
                 },
                 {
                     // SET NTPSYSTEMCFG:ISAUTHENABLE=TRUE; 
-                    prototype: { verb: VerbType.Set, target: "NTPSYSTEMCFG" },
+                    prototype: { verb: "SET", target: "NTPSYSTEMCFG" },
                     parameters: [{ name: "ISAUTHENABLE", value: "TRUE" }],
                 },
                 {
                     // ADD NTPUCASTCFG:IPV4ADDR="10.11.193.245",TYPE=Server,KEYID=12,
                     // ISPREFERRED=TRUE, ADDRFAMILY=IPv4, MAXPOLLINTERVAL=10, MINPOLLINTERVAL=3, 
                     // ISPREEMPT=TRUE, ISBURST=TRUE, ISIBURST=TRUE, PORTNUMBER=123;
-                    prototype: { verb: VerbType.Add, target: "NTPUCASTCFG" },
+                    prototype: { verb: "ADD", target: "NTPUCASTCFG" },
                     parameters: [
                         { name: "IPV4ADDR", value: `"10.11.193.245"` },
                         { name: "TYPE", value: "Server" },
@@ -69,19 +69,19 @@ test("normal command sort test case", () => {
             commands: [
                 {
                     // SET NE:NENAME="CloudUSN";
-                    prototype: { verb: VerbType.Set, target: "NE" },
+                    prototype: { verb: "SET", target: "NE" },
                     parameters: [{ name: "NENAME", value: `"CloudUSN"` }],
                 },
                 {
                     // SET NTPSYSTEMCFG:ISAUTHENABLE=TRUE; 
-                    prototype: { verb: VerbType.Set, target: "NTPSYSTEMCFG" },
+                    prototype: { verb: "SET", target: "NTPSYSTEMCFG" },
                     parameters: [{ name: "ISAUTHENABLE", value: "TRUE" }],
                 },
                 {
                     // ADD NTPUCASTCFG:IPV4ADDR="10.11.193.245",TYPE=Server,KEYID=12,
                     // ISPREFERRED=TRUE, ADDRFAMILY=IPv4, MAXPOLLINTERVAL=10, MINPOLLINTERVAL=3, 
                     // ISPREEMPT=TRUE, ISBURST=TRUE, ISIBURST=TRUE, PORTNUMBER=123;
-                    prototype: { verb: VerbType.Add, target: "NTPUCASTCFG" },
+                    prototype: { verb: "ADD", target: "NTPUCASTCFG" },
                     parameters: [
                         { name: "IPV4ADDR", value: `"10.11.193.245"` },
                         { name: "TYPE", value: "Server" },
@@ -99,7 +99,7 @@ test("normal command sort test case", () => {
             ],
             expect: [
                 new Command({
-                    prototype: { verb: VerbType.Add, target: "NTPUCASTCFG" },
+                    prototype: { verb: "ADD", target: "NTPUCASTCFG" },
                     parameters: [
                         { name: "IPV4ADDR", value: `"10.11.193.245"` },
                         { name: "TYPE", value: "Server" },
@@ -115,11 +115,11 @@ test("normal command sort test case", () => {
                     ],
                 }),
                 new Command({
-                    prototype: { verb: VerbType.Set, target: "NE" },
+                    prototype: { verb: "SET", target: "NE" },
                     parameters: [{ name: "NENAME", value: `"CloudUSN"` }],
                 }),
                 new Command({
-                    prototype: { verb: VerbType.Set, target: "NTPSYSTEMCFG" },
+                    prototype: { verb: "SET", target: "NTPSYSTEMCFG" },
                     parameters: [{ name: "ISAUTHENABLE", value: "TRUE" }],
                 }),
             ]

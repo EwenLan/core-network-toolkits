@@ -1,10 +1,4 @@
-export enum VerbType {
-    Empty = "",
-    Add = "ADD",
-    Modify = "MOD",
-    Set = "SET",
-    Remove = "RMV",
-}
+export type VerbType = string
 
 export enum ParameterValueType {
     Enum,

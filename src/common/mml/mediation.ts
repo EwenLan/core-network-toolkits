@@ -7,18 +7,7 @@ const scriptSplitter = "\n"
 const commentStarter = "/"
 
 function VerbTypeFromString(verbText: string): VerbType {
-    switch (verbText) {
-        case VerbType.Add:
-            return VerbType.Add
-        case VerbType.Modify:
-            return VerbType.Modify
-        case VerbType.Remove:
-            return VerbType.Remove
-        case VerbType.Set:
-            return VerbType.Set
-        default:
-            return VerbType.Empty
-    }
+    return verbText.toUpperCase()
 }
 
 export function PrototypeFromText(prototypeText: string): PrototypeType {

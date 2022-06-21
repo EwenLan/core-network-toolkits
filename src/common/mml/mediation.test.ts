@@ -1,4 +1,4 @@
-import { PrototypeType, VerbType, ParameterType, CommandType } from "./define"
+import { PrototypeType, ParameterType, CommandType } from "./define"
 import { PrototypeFromText, ParameterFromText, ParametersFromText, CommandFromText } from "./mediation"
 
 // PrototypeFromText
@@ -13,7 +13,7 @@ test("normal prototype test case", () => {
             name: "normal upper case",
             prototypeText: "ADD MMEID",
             expect: {
-                verb: VerbType.Add,
+                verb: "ADD",
                 target: "MMEID",
             }
         },
@@ -21,7 +21,7 @@ test("normal prototype test case", () => {
             name: "normal lower case",
             prototypeText: "add mmeid",
             expect: {
-                verb: VerbType.Add,
+                verb: "ADD",
                 target: "MMEID",
             }
         }
@@ -141,7 +141,7 @@ test("normal command test case", () => {
             commandText: `ADD MMEID: MCC="460",MNC="01",MMEGI="8001",MMEC="01";`,
             expect: {
                 prototype: {
-                    verb: VerbType.Add,
+                    verb: "ADD",
                     target: "MMEID",
                 },
                 parameters: [
