@@ -5,6 +5,8 @@ export enum VerbType {
     Set = "SET",
     Remove = "RMV",
     Ping = "PING",
+    List = "LST",
+    Display = "DSP",
 }
 
 export enum ParameterValueType {

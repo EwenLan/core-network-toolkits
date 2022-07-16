@@ -16,6 +16,12 @@ function VerbTypeFromString(verbText: string): VerbType {
             return VerbType.Remove
         case VerbType.Set:
             return VerbType.Set
+        case VerbType.Ping:
+            return VerbType.Ping
+        case VerbType.List:
+            return VerbType.List
+        case VerbType.Display:
+            return VerbType.Display
         default:
             return VerbType.Empty
     }
