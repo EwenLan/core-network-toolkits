@@ -7,16 +7,36 @@ import { Script } from "../../common/mml/script"
 import { TitledFunction } from "../../templates/titledfunction"
 import { KeyValuePair, KeyValuePairDirection } from "./common"
 
+const defaultUntitledFilename = "Untitled - formatted.txt"
+const formattedFileSuffix = " - formatted"
+
 export function MMLMirror() {
     return (
         <TitledFunction title="MML Mirror" content={<MMLMirrorApp />} />
     )
 }
 
+function GetFormattedFilename(originName: string): string {
+    if (originName === "") {
+        return defaultUntitledFilename
+    }
+    const parts = originName.split(".")
+    if (parts.length === 0) {
+        return defaultUntitledFilename
+    }
+    const baseName = parts[0] + formattedFileSuffix
+    var wholeName = baseName
+    for (let i = 1; i < parts.length; i++) {
+        wholeName += `.${parts[i]}`
+    }
+    return wholeName
+}
+
 function MMLMirrorApp() {
     const [configurationSection, setConfigurationSection] = useState("")
     const [formattedScript, setFormattedScript] = useState("")
     const [downloadDisable, setDownloadDisable] = useState(true)
+    const [uploadedFilename, setUploadedFilename] = useState("")
     const handleInputConfigurationSection = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setConfigurationSection(e.target.value)
     }
@@ -28,6 +48,7 @@ function MMLMirrorApp() {
     }
     const handleUploadFile: ((file: RcFile) => boolean) = (file) => {
         const reader = new FileReader()
+        setUploadedFilename(file.name)
         reader.readAsText(file)
         reader.onload = (res) => {
             if (res.target) {
@@ -38,7 +59,7 @@ function MMLMirrorApp() {
     }
     const downloadFormattedFile = () => {
         const downloadLink = document.createElement("a")
-        downloadLink.download = "Formatted Script.txt"
+        downloadLink.download = GetFormattedFilename(uploadedFilename)
         const blob = new Blob([formattedScript])
         downloadLink.href = URL.createObjectURL(blob)
         downloadLink.click()

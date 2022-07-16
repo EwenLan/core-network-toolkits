@@ -57,6 +57,9 @@ export function ParameterFromText(parameterText: string): ParameterType {
 }
 
 export function ParametersFromText(parametersText: string): ParameterType[] {
+    if (parametersText.trim() === "") {
+        return []
+    }
     return SplitComma(parametersText).map((value) => ParameterFromText(value))
 }
 
